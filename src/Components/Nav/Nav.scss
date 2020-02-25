@@ -1,0 +1,24 @@
+.nav {
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    li {
+      :hover {
+        color: gray;
+      }
+      padding: 10px;
+      cursor: pointer;
+      a {
+        width: 100%;
+        color: #fff;
+        text-decoration: none;
+        &.active {
+          color: orange;
+        }
+      }
+    }
+  }
+}
