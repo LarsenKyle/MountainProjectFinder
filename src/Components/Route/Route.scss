@@ -1,0 +1,36 @@
+@import "../../Config.scss";
+
+#routes {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+#routes td {
+  cursor: pointer;
+  text-align: left;
+}
+
+#routes td,
+#routes th {
+  border: 1px solid $third-color;
+  padding: 8px;
+}
+
+#routes tr:nth-child(odd) {
+  background-color: darken($fourth-color, 8);
+}
+
+#routes tr:hover {
+  background-color: $third-color;
+}
+
+#routes th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: $secondary-color;
+  color: white;
+}

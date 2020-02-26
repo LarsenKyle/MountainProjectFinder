@@ -1,3 +1,5 @@
+@import "../../Config.scss";
+
 .nav {
   ul {
     list-style: none;
@@ -16,7 +18,7 @@
         color: #fff;
         text-decoration: none;
         &.active {
-          color: orange;
+          color: $third-color;
         }
       }
     }
