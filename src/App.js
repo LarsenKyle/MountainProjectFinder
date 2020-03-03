@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Nav />
-        <Route path="/MountainProjectFinder" exact component={Mountain} />
+        <Route path="/" exact component={Mountain} />
         <Route path="/route:id" component={RouteView} />
         <Route path="/saved" component={SavedRoutes} />
       </div>
