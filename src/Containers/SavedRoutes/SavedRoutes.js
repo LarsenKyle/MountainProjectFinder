@@ -8,14 +8,19 @@ class SavedRoutes extends Component {
   };
   async componentDidMount() {
     let routeIDs = JSON.parse(localStorage.getItem("routeIDs"));
-    routeIDs.join();
-    let ref = await Axios.get(
-      `https://www.mountainproject.com/data/get-routes?routeIds=${routeIDs}&key=200482277-6a6cd92f3d2c6bf7e97ea689bf580c56`
-    );
-    this.setState({
-      routes: ref.data.routes
-    });
+    if (routeIDs.length > 0) {
+      routeIDs.join();
+      let ref = await Axios.get(
+        `https://www.mountainproject.com/data/get-routes?routeIds=${routeIDs}&key=200482277-6a6cd92f3d2c6bf7e97ea689bf580c56`
+      );
+      this.setState({
+        routes: ref.data.routes
+      });
+    }
   }
+  clear = () => {
+    localStorage.clear();
+  };
   visitRoute = id => {
     this.props.history.push(`/route${id}`);
   };
