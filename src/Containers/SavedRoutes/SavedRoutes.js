@@ -19,9 +19,6 @@ class SavedRoutes extends Component {
       });
     }
   }
-  clear = () => {
-    localStorage.clear();
-  };
   visitRoute = id => {
     this.props.history.push(`/route${id}`);
   };

@@ -66,13 +66,12 @@ class Mountain extends Component {
     }
   };
   findRoutes = async () => {
-    console.log(process.env);
     let apiKey = process.env.REACT_APP_KEY;
     try {
       let ref = await axios.get(
         `https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${this.state.lat}&lon=${this.state.long}&maxDistance=${this.state.distance}&minDiff=${this.state.minDiff}&maxDiff=${this.state.maxDiff}&key=${apiKey}`
       );
-      const limitRoutes = ref.data.routes.slice(0, 20);
+      const limitRoutes = ref.data.routes.slice(0, 50);
       this.props.onGetRoutes(limitRoutes);
       this.setState({
         routes: limitRoutes
@@ -136,7 +135,7 @@ class Mountain extends Component {
                 <th>Location</th>
               </tr>
             </thead>
-            <tr>{routeTable}</tr>
+            <tbody>{routeTable}</tbody>
           </table>
         ) : null}
         {this.state.routes ? (

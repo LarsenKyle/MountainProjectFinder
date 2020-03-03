@@ -24,9 +24,7 @@ class RouteView extends Component {
       this.setState({ route: ref.data.routes[0] });
     }
   }
-  clearStorage = () => {
-    localStorage.clear();
-  };
+
   saveRoute = () => {
     if (!this.state.starToggle) {
       let routeIDs = JSON.parse(localStorage.getItem("routeIDs"));
@@ -60,7 +58,7 @@ class RouteView extends Component {
           <div className="line">
             <div className="flex">
               <div className="info">
-                <h2 onClick={this.clearStorage}>{this.state.route.name}</h2>
+                <h2>{this.state.route.name}</h2>
                 {!this.state.starToggle ? (
                   <svg
                     onClick={this.saveRoute}
