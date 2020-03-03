@@ -7,11 +7,12 @@ class SavedRoutes extends Component {
     routes: null
   };
   async componentDidMount() {
+    let apiKey = process.env.REACT_APP_KEY;
     let routeIDs = JSON.parse(localStorage.getItem("routeIDs"));
     if (routeIDs.length > 0) {
       routeIDs.join();
       let ref = await Axios.get(
-        `https://www.mountainproject.com/data/get-routes?routeIds=${routeIDs}&key=200482277-6a6cd92f3d2c6bf7e97ea689bf580c56`
+        `https://www.mountainproject.com/data/get-routes?routeIds=${routeIDs}&${apiKey}`
       );
       this.setState({
         routes: ref.data.routes

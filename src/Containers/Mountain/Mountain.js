@@ -66,6 +66,7 @@ class Mountain extends Component {
     }
   };
   findRoutes = async () => {
+    console.log(process.env);
     let apiKey = process.env.REACT_APP_KEY;
     try {
       let ref = await axios.get(
