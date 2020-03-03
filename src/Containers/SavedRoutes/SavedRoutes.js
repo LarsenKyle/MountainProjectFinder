@@ -12,7 +12,7 @@ class SavedRoutes extends Component {
     if (routeIDs.length > 0) {
       routeIDs.join();
       let ref = await Axios.get(
-        `https://www.mountainproject.com/data/get-routes?routeIds=${routeIDs}&${apiKey}`
+        `https://www.mountainproject.com/data/get-routes?routeIds=${routeIDs}&key=${apiKey}`
       );
       this.setState({
         routes: ref.data.routes
