@@ -1,11 +1,8 @@
 import React from "react";
 
 const EachRoute = props => {
-  const clickIt = () => {
-    console.log(props);
-  };
   return (
-    <tr onClick={clickIt}>
+    <tr onClick={props.clicked}>
       <td>{props.name}</td>
       <td>{props.type}</td>
       <td>{props.grade}</td>

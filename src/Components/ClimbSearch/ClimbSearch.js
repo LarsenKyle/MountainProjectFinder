@@ -8,7 +8,9 @@ const ClimbSearch = props => {
   return (
     <div className="climb-search">
       <div style={margin} className="form-group">
-        <label htmlFor="dynamic-label-input">How far do you want to go?</label>
+        <label htmlFor="dynamic-label-input">
+          How many miles do you want to go?
+        </label>
         <input
           onChange={props.disChange}
           type="number"

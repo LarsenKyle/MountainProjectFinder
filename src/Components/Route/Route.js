@@ -9,6 +9,7 @@ const Route = props => {
       type={props.type}
       name={props.name}
       location={props.location}
+      clicked={props.clicked}
     />
   );
 };

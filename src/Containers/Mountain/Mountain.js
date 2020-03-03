@@ -3,6 +3,8 @@ import "./Mountain.scss";
 import axios from "axios";
 import ClimbSearch from "../../Components/ClimbSearch/ClimbSearch";
 import Route from "../../Components/Route/Route";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Mountain extends Component {
   state = {
@@ -70,10 +72,10 @@ class Mountain extends Component {
         `https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${this.state.lat}&lon=${this.state.long}&maxDistance=${this.state.distance}&minDiff=${this.state.minDiff}&maxDiff=${this.state.maxDiff}&key=${apiKey}`
       );
       const limitRoutes = ref.data.routes.slice(0, 20);
+      this.props.onGetRoutes(limitRoutes);
       this.setState({
         routes: limitRoutes
       });
-      console.log(this.state.routes);
     } catch (error) {
       console.log(error);
       this.setState({ error });
@@ -83,6 +85,9 @@ class Mountain extends Component {
     this.setState({
       routes: null
     });
+  };
+  visitRoute = id => {
+    this.props.history.push(`/route${id}`);
   };
 
   render() {
@@ -97,13 +102,16 @@ class Mountain extends Component {
     if (this.state.routes) {
       search = null;
       routeTable = this.state.routes.map(route => {
+        let arrNum = parseInt(route.location.length);
+        arrNum -= 1;
         return (
           <Route
             key={route.id}
             name={route.name}
             type={route.type}
             grade={route.rating}
-            location={route.location[2]}
+            location={route.location[arrNum]}
+            clicked={() => this.visitRoute(route.id)}
           />
         );
       });
@@ -112,9 +120,9 @@ class Mountain extends Component {
     return (
       <div className="mountain">
         {!this.state.routes ? (
-          <h2> Find climbing routes near you! </h2>
+          <h2>Find Climbing Routes Near You!</h2>
         ) : (
-          <h2>Click for details!</h2>
+          <h2>Click a route for more details!</h2>
         )}
         {search}
         {this.state.routes ? (
@@ -127,7 +135,7 @@ class Mountain extends Component {
                 <th>Location</th>
               </tr>
             </thead>
-            {routeTable}
+            <tr>{routeTable}</tr>
           </table>
         ) : null}
         {this.state.routes ? (
@@ -140,4 +148,21 @@ class Mountain extends Component {
   }
 }
 
-export default Mountain;
+const mapStateToProps = state => {
+  return {
+    rts: state
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onGetRoutes: routes =>
+      dispatch({
+        type: "GET_ROUTES",
+        routes: routes
+      })
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Mountain)
+);

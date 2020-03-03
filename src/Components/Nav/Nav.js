@@ -9,11 +9,11 @@ const Nav = props => {
         <ul>
           <li>
             <NavLink to="/" exact>
-              Home
+              Search Routes
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/saved">Saved Routes</NavLink>
           </li>
         </ul>
       </nav>
